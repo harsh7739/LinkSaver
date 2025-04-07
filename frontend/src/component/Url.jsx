@@ -50,7 +50,7 @@ const UrlPage = () => {
         console.log('Resource deleted successfully:', response.data);
         fetchUrl()
     } catch (error) {
-        
+        console.log(error)
     }
   }
 

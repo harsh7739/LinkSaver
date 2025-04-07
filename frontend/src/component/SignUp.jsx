@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 
 const SignupPage = () => {
@@ -5,9 +6,20 @@ const SignupPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log('User:', username, 'Email:', email, 'Password:', password)
+    // console.log('User:', username, 'Email:', email, 'Password:', password)
+    try {
+      const payload={
+        userName:username,
+        email,
+        password
+      }
+      let response = await axios.post("http://localhost:8080/user/register",payload)
+      console.log(response)
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   return (
@@ -54,7 +66,7 @@ const SignupPage = () => {
             />
           </div>
 
-          <button type="submit" style={styles.button}>Login</button>
+          <button type="submit" style={styles.button}>Sign Up</button>
         </form>
       </div>
     </div>

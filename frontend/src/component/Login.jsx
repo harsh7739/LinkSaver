@@ -1,12 +1,24 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log('Email:', email, 'Password:', password);
+    // console.log('Email:', email, 'Password:', password);
+    try {
+      const payload = {
+        email,
+        password
+      }
+      const response = await axios.post("http://localhost:8080/user/login",payload)
+      console.log(response)
+    } catch (error) {
+      
+    }
+
   };
 
   return (
@@ -40,7 +52,7 @@ const LoginPage = () => {
             />
           </div>
 
-          <button type="submit" style={styles.button}>Sign Up</button>
+          <button type="submit" style={styles.button}>Login</button>
         </form>
       </div>
     </div>
