@@ -27,7 +27,7 @@ urlRouter.post("/save", async (req, res) => {
     req.body.created_at = new Date();
     // console.log("request from url save data ",req.body)
     let url = new LinkModel(req.body);
-    console.log("url....",url)
+    // console.log("url....",url)
     await url.save();
     res.status(201).send({ message: "URL BookMarked successfully...", url });
   } catch (error) {
@@ -58,7 +58,7 @@ urlRouter.patch("/:id", async (req, res) => {
 urlRouter.delete("/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    let url= await ProductModel.findOne({_id:id})
+    let url= await LinkModel.findOne({_id:id})
     if (!url) {
       res.status(202).json({ error: "no Url found" });
     } else {
